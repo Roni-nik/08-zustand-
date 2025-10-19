@@ -12,10 +12,11 @@ import { showErrorToast } from "@/components/ShowErrorToast/ShowError";
 import NoteList from "@/components/NoteList/NoteList";
 import Pagination from "@/components/Pagination/Pagination";
 import SearchBox from "@/components/SearchBox/SearchBox";
-import CreateModal from "@/components/Modal/Modal";
+
 import NoteForm from "@/components/NoteForm/NoteForm";
 import type { NoteSearchResponse } from "@/lib/api";
 import Loader from "@/components/Loader/Loader";
+import Link from "next/link";
 
 type NoteClientProps = {
 
@@ -26,7 +27,7 @@ export default function NotesClient({ tag }: NoteClientProps) {
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [inputValue, setInputValue] = useState("");
-  const [isModalOpen, setModalOpen] = useState(false);
+  
 
   const updateSearchQuery = useDebouncedCallback((value: string) => {
     setSearchQuery(value);
@@ -93,18 +94,12 @@ export default function NotesClient({ tag }: NoteClientProps) {
             onPageChange={setCurrentPage}
           />
         )}
-        <button onClick={() => setModalOpen(true)} className={css.button}>
-          Create note +
-        </button>
-        {isModalOpen && (
-          <CreateModal onClose={() => setModalOpen(false)}>
-            <NoteForm onCancel={() => setModalOpen(false)} />
-          </CreateModal>
-        )}
+          <Link className={css.button} href="/notes/action/create">
+          Create note
+        </Link>
       </header>
       {loadingContent}
       {successContent}
-      <ToastContainer />
     </div>
   );
 }
