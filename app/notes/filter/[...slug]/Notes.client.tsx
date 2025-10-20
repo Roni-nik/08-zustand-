@@ -3,7 +3,6 @@
 import css from "./Notes.client.module.css";
 import { useState, useEffect, useRef } from "react";
 import { useDebouncedCallback } from "use-debounce";
-import { ToastContainer } from "react-toastify";
 import { useQuery, keepPreviousData } from "@tanstack/react-query";
 
 import { fetchNotes } from "@/lib/api";
@@ -13,8 +12,7 @@ import NoteList from "@/components/NoteList/NoteList";
 import Pagination from "@/components/Pagination/Pagination";
 import SearchBox from "@/components/SearchBox/SearchBox";
 
-import NoteForm from "@/components/NoteForm/NoteForm";
-import type { NoteSearchResponse } from "@/lib/api";
+
 import Loader from "@/components/Loader/Loader";
 import Link from "next/link";
 
